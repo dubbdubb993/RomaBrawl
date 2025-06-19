@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RomaBrawl Roster</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: gold;
+      margin: 20px 0;
+    }
+    .roster {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .name {
+      font-size: 1.2em;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    .nickname {
+      color: gold;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .section {
+      margin-bottom: 5px;
+    }
+    .champion-icon {
+      font-size: 1.2em;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>RomaBrawl Roster</h1>
+  <div class="roster" id="roster"></div>
+  <script>
+    const champions = {
+      "phoenixarizona": "🍔",
+      "captainafrica": "🥇",
+      "devilslettuce": "🥇"
+    };
+
+    const fighters = [
+      { id: "darkdragon", name: "Dark Dragon", nickname: "The Eternal Scalie", finisher: "Super Bloody Dragon Fist Fang Fury Barrage Times 100 With A Kick", quote: "", bio: "" },
+      { id: "captainafrica", name: "Captain Africa", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "couchfucker", name: "Couchfucker", nickname: "Fucker of Couches", finisher: "The Chest Arrest", quote: "", bio: "" },
+      { id: "crimsontism", name: "Crimson Tism", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "evil", name: "Evil", nickname: "Revolving Phantom", finisher: "Liberty’s Back Baby", quote: "", bio: "" },
+      { id: "devilslettuce", name: "The Devils Lettuce", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "elbeaner", name: "El Beaner", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "harmacist", name: "The Harmacist", nickname: "Death’s Paramedic", finisher: "D.O.A (Dead On Arrival)", quote: "Time to take your final dose.", bio: "" },
+      { id: "thecuck", name: "The Cuck", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "enigma", name: "The Enigma", nickname: "First Born of Yakub", finisher: "White Devil Syphon", quote: "", bio: "" },
+      { id: "humantwig", name: "Human Twig", nickname: "Emo Scalie", finisher: "", quote: "", bio: "" },
+      { id: "kitchennightmare", name: "Kitchen Nightmare", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "spanishcivilian", name: "Spanish Civilian", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "agarthanknight", name: "Agarthan Knight", nickname: "Knight of the Depths", finisher: "", quote: "", bio: "" },
+      { id: "phoenixarizona", name: "Phoenix Arizona", nickname: "", finisher: "", quote: "", bio: "" },
+      { id: "punishedharbinger", name: "Punished Harbinger", nickname: "Avatar of the Rock", finisher: "Divine Intervention", quote: "", bio: "" }
+    ];
+
+    const container = document.getElementById('roster');
+    fighters.forEach(f => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="cropped_fighters/${f.id}.png" alt="${f.name}">
+        <div class="name">${f.name}${champions[f.id] ? `<span class='champion-icon' title='Champion'>${champions[f.id]}</span>` : ''}</div>
+        <div class="nickname">${f.nickname || ""}</div>
+        <div class="section"><strong>Finisher:</strong> ${f.finisher || ""}</div>
+        <div class="section"><strong>Quote:</strong> ${f.quote || ""}</div>
+        <div class="section"><strong>Bio:</strong> ${f.bio || ""}</div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
