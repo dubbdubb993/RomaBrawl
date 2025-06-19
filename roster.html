@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RomaBrawl Roster</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: #1f1f1f;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      width: 200px;
+      vertical-align: top;
+      text-align: center;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .card .name {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-top: 8px;
+    }
+    .card .nickname {
+      font-style: italic;
+      color: gold;
+      font-size: 0.9em;
+    }
+    .card.champion {
+      border: 3px solid gold;
+      box-shadow: 0 0 15px gold;
+      background: linear-gradient(to bottom, #2a2a2a, #111);
+      position: relative;
+    }
+    .card.champion::after {
+      content: attr(data-title);
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      font-size: 0.7rem;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    .card.champion .name {
+      color: gold;
+    }
+    .section {
+      margin-top: 5px;
+      font-size: 0.85em;
+    }
+    .quote {
+      margin-top: 8px;
+      font-style: italic;
+      font-size: 0.8em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>RomaBrawl Roster</h1>
+  <div id="roster"></div>
+
+  <script>
+    const fighters = [{"id": "agarthanknight", "name": "Agarthan Knight", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "captainafrica", "name": "Captain Africa", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": "", "champion": "Tag Champion"}, {"id": "couchfucker", "name": "Couchfucker", "nickname": "Fucker of Couches", "finisher": "The Chest Arrest", "quote": "", "bio": "", "theme": ""}, {"id": "crimsontism", "name": "Crimson Tism", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "darkdragon", "name": "Dark Dragon", "nickname": "The Eternal Scalie", "finisher": "Super Bloody Dragon Fist Fang Fury Barrage Times 100 With A Kick", "quote": "", "bio": "", "theme": ""}, {"id": "devilslettuce", "name": "The Devils Lettuce", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": "", "champion": "Tag Champion"}, {"id": "elbeaner", "name": "El Beaner", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "enigma", "name": "The Enigma", "nickname": "First Born of Yakub", "finisher": "White Devil Syphon", "quote": "", "bio": "", "theme": ""}, {"id": "evil", "name": "Evil", "nickname": "Revolving Phantom", "finisher": "Liberty\u2019s Back Baby", "quote": "", "bio": "", "theme": ""}, {"id": "harmacist", "name": "The Harmacist", "nickname": "Death\u2019s Paramedic", "finisher": "D.O.A (Dead On Arrival)", "quote": "I\u2019m not here to fight you. I\u2019m here to recover you. You just haven\u2019t died yet.", "bio": "", "theme": ""}, {"id": "humantwig", "name": "Human Twig", "nickname": "Emo Scalie", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "kitchennightmare", "name": "Kitchen Nightmare", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "phoenixarizona", "name": "Phoenix Arizona", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": "", "champion": "Wendy's Champion"}, {"id": "punishedharbinger", "name": "Punished Harbinger", "nickname": "Avatar of the Rock", "finisher": "Divine Intervention", "quote": "", "bio": "", "theme": ""}, {"id": "spanishcivilian", "name": "Spanish Civilian", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}, {"id": "thecuck", "name": "The Cuck", "nickname": "", "finisher": "", "quote": "", "bio": "", "theme": ""}];
+    fighters.sort((a, b) => a.name.localeCompare(b.name));
+
+    function isChampion(id) {
+      return ['phoenixarizona', 'captainafrica', 'devilslettuce'].includes(id);
+    }
+    function getTitle(id) {
+      return id === 'phoenixarizona' ? "Wendy's Champion" : "Tag Champion";
+    }
+
+    const container = document.getElementById('roster');
+    fighters.forEach(f => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.id = f.id;
+      if (isChampion(f.id)) {
+        card.classList.add('champion');
+        card.setAttribute('data-title', getTitle(f.id));
+      }
+      card.innerHTML = `
+        <img src="cropped_fighters/${f.id}.png" alt="${f.name}">
+        <div class="name">${f.name}</div>
+        <div class="nickname">${f.nickname || ''}</div>
+        <div class="section"><strong>Finisher:</strong> ${f.finisher || '—'}</div>
+        <div class="quote">${f.quote || ''}</div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
