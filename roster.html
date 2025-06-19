@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>RomaBrawl Roster</title>
+<style>
+        body {
+            background-color: #111;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .roster-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .fighter-card {
+            background-color: #222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease;
+        }
+        .fighter-card:hover {
+            transform: scale(1.05);
+        }
+        .fighter-img {
+            width: 100%;
+            display: block;
+        }
+        .fighter-details {
+            padding: 15px;
+        }
+        .fighter-name {
+            font-size: 1.2em;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        .fighter-nickname {
+            color: gold;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+        .fighter-info {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="roster-container" id="roster">
+<!-- Fighters will be injected here -->
+</div>
+<script>
+        const champions = {
+            "Phoenix Arizona": "🍔",
+            "Captain Africa": "🥇",
+            "The Devils Lettuce": "🥇"
+        };
+
+        const fighters = [
+            {
+                name: "Phoenix Arizona",
+                nickname: "The Rising Flame",
+                finisher: "",
+                bio: "",
+                quote: ""
+            },
+            {
+                name: "Captain Africa",
+                nickname: "",
+                finisher: "",
+                bio: "",
+                quote: ""
+            },
+            {
+                name: "The Devils Lettuce",
+                nickname: "",
+                finisher: "",
+                bio: "",
+                quote: ""
+            },
+            {
+                name: "Punished Harbinger",
+                nickname: "",
+                finisher: "",
+                bio: "",
+                quote: ""
+            },
+            {
+                name: "Spanish Civilian",
+                nickname: "",
+                finisher: "",
+                bio: "",
+                quote: ""
+            },
+            {
+                name: "Agarthan Knight",
+                nickname: "",
+                finisher: "",
+                bio: "",
+                quote: ""
+            }
+        ];
+
+        const rosterContainer = document.getElementById("roster");
+
+        fighters.forEach(f => {
+            const card = document.createElement("div");
+            card.className = "fighter-card";
+
+            const img = document.createElement("img");
+            img.src = `images/${f.name.toLowerCase().replace(/ /g, "")}.png`;
+            img.alt = f.name;
+            img.className = "fighter-img";
+
+            const details = document.createElement("div");
+            details.className = "fighter-details";
+
+            const name = document.createElement("div");
+            name.className = "fighter-name";
+            name.innerHTML = f.name + (champions[f.name] ? ` <span title="Champion">${champions[f.name]}</span>` : "");
+
+            const nickname = document.createElement("div");
+            nickname.className = "fighter-nickname";
+            nickname.textContent = f.nickname;
+
+            const finisher = document.createElement("div");
+            finisher.className = "fighter-info";
+            finisher.innerHTML = `<strong>Finisher:</strong> ${f.finisher}`;
+
+            const bio = document.createElement("div");
+            bio.className = "fighter-info";
+            bio.innerHTML = `<strong>Bio:</strong> ${f.bio}`;
+
+            const quote = document.createElement("div");
+            quote.className = "fighter-info";
+            quote.innerHTML = `<strong>Quote:</strong> ${f.quote}`;
+
+            details.append(name, nickname, finisher, bio, quote);
+            card.append(img, details);
+            rosterContainer.append(card);
+        });
+    </script>
+</body>
+</html>
